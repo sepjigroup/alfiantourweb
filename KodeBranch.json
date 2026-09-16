@@ -1,0 +1,188 @@
+﻿[
+  {
+    "Id": 1,
+    "City": "Jakarta",
+    "Province": "DKI Jakarta",
+    "Code": "JKT-HQ"
+  },
+  {
+    "Id": 2,
+    "City": "Bandung",
+    "Province": "Jawa Barat",
+    "Code": "BDG-01"
+  },
+  {
+    "Id": 3,
+    "City": "Denpasar",
+    "Province": "Bali",
+    "Code": "DPS-01"
+  },
+  {
+    "Id": 4,
+    "City": "Bandung Timur",
+    "Province": "Jawa Barat",
+    "Code": "BDG-TMR-001"
+  },
+  {
+    "Id": 5,
+    "City": "Bandung",
+    "Province": "Jawa Barat",
+    "Code": "BDG-CWD-001"
+  },
+  {
+    "Id": 6,
+    "City": "Garut",
+    "Province": "Jawa Barat",
+    "Code": "GRT-LLS-001"
+  },
+  {
+    "Id": 7,
+    "City": "Cimahi",
+    "Province": "Jawa Barat",
+    "Code": "CMH-001"
+  },
+  {
+    "Id": 8,
+    "City": "Ciamis",
+    "Province": "Jawa Barat",
+    "Code": "CMS-001"
+  },
+  {
+    "Id": 9,
+    "City": "Garut",
+    "Province": "Jawa Barat",
+    "Code": "GRT-KDG-001"
+  },
+  {
+    "Id": 10,
+    "City": "Garut",
+    "Province": "Jawa Barat",
+    "Code": "GRT-HRM-001"
+  },
+  {
+    "Id": 11,
+    "City": "Garut",
+    "Province": "Jawa Barat",
+    "Code": "GRT-BYG-001"
+  },
+  {
+    "Id": 12,
+    "City": "Bogor",
+    "Province": "Jawa Barat",
+    "Code": "BGR-001"
+  },
+  {
+    "Id": 13,
+    "City": "Tangerang Selatan",
+    "Province": "Banten",
+    "Code": "TGS-001"
+  },
+  {
+    "Id": 14,
+    "City": "Bekasi",
+    "Province": "Jawa Barat",
+    "Code": "BKS-001"
+  },
+  {
+    "Id": 15,
+    "City": "Cianjur",
+    "Province": "Jawa Barat",
+    "Code": "CNJ-001"
+  },
+  {
+    "Id": 16,
+    "City": "Cianjur",
+    "Province": "Jawa Barat",
+    "Code": "CNJ-CPS-001"
+  },
+  {
+    "Id": 17,
+    "City": "Garut",
+    "Province": "Jawa Barat",
+    "Code": "GRT-TLG-001"
+  },
+  {
+    "Id": 18,
+    "City": "Cirebon",
+    "Province": "Jawa Barat",
+    "Code": "CRB-001"
+  },
+  {
+    "Id": 19,
+    "City": "Bandung",
+    "Province": "Jawa Barat",
+    "Code": "BDG-RCS-001"
+  },
+  {
+    "Id": 20,
+    "City": "Bandung",
+    "Province": "Jawa Barat",
+    "Code": "BDG-SLJ-001"
+  },
+  {
+    "Id": 21,
+    "City": null,
+    "Province": "Kalimantan",
+    "Code": "KLM-001"
+  },
+  {
+    "Id": 22,
+    "City": "Bekasi",
+    "Province": "Jawa Barat",
+    "Code": "CKR-001"
+  },
+  {
+    "Id": 23,
+    "City": "Jakarta Timur",
+    "Province": "DKI Jakarta",
+    "Code": "JKT-TMR-001"
+  },
+  {
+    "Id": 24,
+    "City": "Lebak",
+    "Province": "Banten",
+    "Code": "LBK-001"
+  },
+  {
+    "Id": 25,
+    "City": "Pemalang",
+    "Province": "Jawa Tengah",
+    "Code": "PML-001"
+  },
+  {
+    "Id": 26,
+    "City": "Semarang",
+    "Province": "Jawa Tengah",
+    "Code": "SMG-001"
+  },
+  {
+    "Id": 27,
+    "City": "Pemalang",
+    "Province": "Jawa Tengah",
+    "Code": "PML-RDK-001"
+  },
+  {
+    "Id": 28,
+    "City": "Bangkalan",
+    "Province": "Jawa Timur",
+    "Code": "BKL-001"
+  },
+  {
+    "Id": 29,
+    "City": "Padang",
+    "Province": "Sumatera Barat",
+    "Code": "PDG-001"
+  },
+  {
+    "Id": 30,
+    "City": "Samarinda",
+    "Province": "Kalimantan Timur",
+    "Code": "SMR-001"
+  },
+  {
+    "Id": 31,
+    "City": "Labuan Bajo",
+    "Province": "Nusa Tenggara Timur",
+    "Code": "LBJ-001"
+  }
+]

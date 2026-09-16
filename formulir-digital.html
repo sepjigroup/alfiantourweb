@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulir Pendaftaran Haji dan Umroh - PT. Alfian Sejahtera Abadi</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Times+New+Roman&family=Arial+Narrow&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #e0e0e0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 8.5pt;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 10mm auto;
+    background: #fff;
+    padding: 6mm 7mm 6mm 7mm;
+    position: relative;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid #000;
+    margin-bottom: 3px;
+  }
+  .header-logo {
+    width: 22mm;
+    min-width: 22mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid #000;
+    padding: 3px;
+    height: 100%;
+  }
+  .logo-circle {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: #1a3a6b;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 6pt; font-weight: bold; text-align: center;
+    line-height: 1.1;
+  }
+  .header-title {
+    flex: 1;
+    text-align: center;
+    padding: 4px 5px;
+  }
+  .header-title .tagline {
+    font-size: 7pt;
+    letter-spacing: 2px;
+    color: #555;
+    text-transform: uppercase;
+  }
+  .header-title .main-title {
+    font-size: 14pt;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: #1a3a6b;
+    text-transform: uppercase;
+  }
+  .header-title .company {
+    font-size: 8pt;
+    font-weight: bold;
+    color: #000;
+  }
+  .header-title .address {
+    font-size: 6.5pt;
+    color: #333;
+  }
+  .header-photo {
+    width: 24mm;
+    min-width: 24mm;
+    border-left: 1px solid #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    height: 100%;
+  }
+  .photo-box {
+    width: 28mm;
+    height: 36mm;
+    border: 1px solid #aaa;
+    display: flex; align-items: center; justify-content: center;
+    background: #f9f9f9;
+    font-size: 6pt;
+    color: #888;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  /* ===== SECTION TITLES ===== */
+  .section-title {
+    background: #1a3a6b;
+    color: #fff;
+    font-size: 7.5pt;
+    font-weight: bold;
+    padding: 2px 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 3px 0 1px 0;
+  }
+
+  /* ===== FORM TABLE ===== */
+  .form-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8pt;
+  }
+  .form-table td {
+    padding: 1.5px 3px;
+    vertical-align: top;
+    border: 0.5px solid #ccc;
+  }
+  .form-table .label {
+    width: 32mm;
+    color: #222;
+    font-weight: normal;
+    white-space: nowrap;
+    background: #f5f5f5;
+    padding-left: 4px;
+  }
+  .form-table .colon {
+    width: 4mm;
+    text-align: center;
+  }
+  .form-table .value {
+    color: #000;
+    min-height: 10px;
+    border-bottom: 0.5px dotted #999;
+  }
+  .value-data {
+    font-size: 8pt;
+    color: #000;
+    display: inline-block;
+    min-width: 40mm;
+  }
+
+  /* ===== CHECKBOX STYLE ===== */
+  .cb-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px 8px;
+    align-items: center;
+    font-size: 7.5pt;
+  }
+  .cb-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    white-space: nowrap;
+  }
+  .cb-box {
+    width: 9px; height: 9px;
+    border: 1px solid #333;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 7pt;
+    background: #fff;
+    flex-shrink: 0;
+  }
+  .cb-box.checked { background: #1a3a6b; color: #fff; }
+
+  /* ===== TWO COLUMN LAYOUT ===== */
+  .two-col {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 3px;
+  }
+  .two-col > div { flex: 1; }
+
+  /* ===== PAYMENT SECTION ===== */
+  .payment-section {
+    display: flex;
+    gap: 3px;
+    margin-top: 2px;
+  }
+  .payment-box {
+    flex: 1;
+    border: 1px solid #1a3a6b;
+    padding: 3px 5px;
+    font-size: 7.5pt;
+  }
+  .payment-box .pay-title {
+    background: #1a3a6b;
+    color: #fff;
+    text-align: center;
+    font-size: 7pt;
+    font-weight: bold;
+    margin: -3px -5px 3px -5px;
+    padding: 2px;
+  }
+  .payment-box .pay-row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 0.5px dotted #aaa;
+    padding: 1px 0;
+    font-size: 7pt;
+  }
+  .payment-box .pay-row .pay-label { color: #555; }
+  .payment-box .pay-row .pay-val { font-weight: bold; color: #1a3a6b; }
+
+  /* ===== DOCUMENT SECTION ===== */
+  .doc-section {
+    display: flex;
+    gap: 3px;
+    margin-top: 2px;
+  }
+  .doc-box {
+    flex: 1;
+    border: 1px solid #ccc;
+    font-size: 7pt;
+  }
+  .doc-box .doc-title {
+    background: #1a3a6b;
+    color: #fff;
+    padding: 2px 5px;
+    font-weight: bold;
+    font-size: 7pt;
+    text-transform: uppercase;
+  }
+  .doc-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 7pt;
+  }
+  .doc-table tr { border-bottom: 0.5px solid #eee; }
+  .doc-table td {
+    padding: 1.5px 4px;
+    border-right: 0.5px solid #eee;
+  }
+  .doc-table .doc-name { width: 55%; }
+  .doc-table .doc-asli { width: 15%; text-align: center; }
+  .doc-table .doc-copy { width: 15%; text-align: center; }
+  .doc-table thead td {
+    background: #e8edf4;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  /* ===== SIGNATURE SECTION ===== */
+  .sign-section {
+    display: flex;
+    gap: 5px;
+    margin-top: 4px;
+    align-items: flex-start;
+  }
+  .sign-box {
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 4px;
+    text-align: center;
+    font-size: 7.5pt;
+  }
+  .sign-box .sign-label {
+    font-size: 7pt;
+    color: #555;
+    margin-bottom: 3px;
+  }
+  .sign-canvas-wrap {
+    position: relative;
+    display: inline-block;
+    border: 1px dashed #aaa;
+    background: #fafafa;
+    cursor: crosshair;
+  }
+  .sign-canvas-wrap canvas {
+    display: block;
+  }
+  .sign-name-line {
+    border-top: 1px solid #555;
+    margin-top: 3px;
+    padding-top: 2px;
+    font-size: 7.5pt;
+    min-height: 12px;
+  }
+  .sign-date-line {
+    font-size: 7pt;
+    color: #555;
+    margin-top: 2px;
+  }
+  .btn-clear {
+    display: inline-block;
+    margin-top: 3px;
+    padding: 2px 8px;
+    font-size: 7pt;
+    background: #eee;
+    border: 1px solid #bbb;
+    border-radius: 2px;
+    cursor: pointer;
+    color: #333;
+  }
+  .btn-clear:hover { background: #ddd; }
+
+  /* ===== CATATAN ===== */
+  .catatan-box {
+    border: 1px solid #ccc;
+    padding: 3px 5px;
+    font-size: 7pt;
+    min-height: 20px;
+  }
+
+  /* ===== FOOTER ===== */
+  .footer-note {
+    font-size: 6.5pt;
+    color: #444;
+    margin-top: 3px;
+    padding: 3px 5px;
+    border: 0.5px solid #ccc;
+    background: #fffbe6;
+    line-height: 1.5;
+  }
+
+  .inline-field {
+    display: inline-block;
+    border-bottom: 1px solid #333;
+    min-width: 30mm;
+    height: 9px;
+    margin: 0 2px;
+    vertical-align: bottom;
+  }
+
+  /* ===== PRINT STYLES ===== */
+  @media print {
+    body { background: #fff; }
+    .page { margin: 0; width: 210mm; min-height: 297mm; padding: 6mm 7mm; box-shadow: none; }
+    .btn-clear { display: none; }
+    .no-print { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PRINT BUTTON (no print) -->
+<div class="no-print" style="text-align:center; padding: 8px; background:#1a3a6b;">
+  <button onclick="window.print()" style="background:#fff; color:#1a3a6b; border:none; padding:6px 20px; font-weight:bold; font-size:10pt; border-radius:4px; cursor:pointer;">🖨️ PRINT FORMULIR</button>
+  &nbsp;
+  <button onclick="clearAllSigns()" style="background:#c0392b; color:#fff; border:none; padding:6px 20px; font-weight:bold; font-size:10pt; border-radius:4px; cursor:pointer;">✕ Hapus Semua Tanda Tangan</button>
+</div>
+
+<div class="page">
+
+  <!-- ===== HEADER ===== -->
+  <div class="header">
+    <div class="header-logo">
+      <div class="logo-circle">
+        <span>ALFIAN<br>TOUR</span>
+      </div>
+    </div>
+    <div class="header-title">
+      <div class="tagline">H A J I &nbsp;-&nbsp; U M R A H &nbsp;-&nbsp; T R A V E L &nbsp; I N T E R N A S I O N A L</div>
+      <div class="main-title">FORMULIR PENDAFTARAN HAJI DAN UMROH</div>
+      <div class="company">PT. ALFIAN SEJAHTERA ABADI</div>
+      <div class="address">Provide by ZNH Group Bandung</div>
+      <div class="address">Kantor Pusat : Jl. Dewi Sartika No. 54 Bandung Jawa Barat</div>
+      <div class="address">wa.me/+62085722022786 &nbsp;|&nbsp; wa.me/+62081320758493</div>
+    </div>
+    <div class="header-photo">
+      <div class="photo-box">PAS FOTO<br>3 x 4</div>
+    </div>
+  </div>
+
+  <!-- ===== SECTION: DATA PRIBADI ===== -->
+  <div class="section-title">DATA PRIBADI <span style="font-weight:normal; font-size:6.5pt;">(Diisi oleh jamaah)</span></div>
+  <div style="font-size:6.5pt; color:#555; margin-bottom:2px; padding: 1px 2px;">
+    MOHON DIISI SECARA LENGKAP DENGAN HURUF CETAK DAN MENGGUNAKAN BALL-POIN WARNA HITAM
+  </div>
+
+  <table class="form-table">
+    <tr>
+      <td class="label">Nama Lengkap Jamaah<br><span style="font-size:6.5pt; color:#777;">(sesuai passport)</span></td>
+      <td class="colon">:</td>
+      <td class="value" colspan="3"><span class="value-data" id="val-nama"></span></td>
+    </tr>
+    <tr>
+      <td class="label">Status</td>
+      <td class="colon">:</td>
+      <td class="value" colspan="3">
+        <div class="cb-row" id="val-status">
+          <span class="cb-item"><span class="cb-box" id="cb-belum-nikah"></span> Belum Menikah</span>
+          <span class="cb-item"><span class="cb-box" id="cb-menikah"></span> Menikah</span>
+          <span class="cb-item"><span class="cb-box" id="cb-duda"></span> Duda/Janda</span>
+          &nbsp;&nbsp;Jenis Kelamin :
+          <span class="cb-item"><span class="cb-box" id="cb-l"></span> L</span>
+          <span class="cb-item"><span class="cb-box" id="cb-p"></span> P</span>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Tempat &amp; Tgl. Lahir</td>
+      <td class="colon">:</td>
+      <td class="value" colspan="3"><span class="value-data" id="val-ttl"></span></td>
+    </tr>
+    <tr>
+      <td class="label">Pernah Umrah/Haji</td>
+      <td class="colon">:</td>
+      <td class="value" colspan="3">
+        <div class="cb-row">
+          <span class="cb-item"><span class="cb-box" id="cb-pernah-haji"></span> Sudah pernah Haji terakhir tahun : <span class="inline-field" style="min-width:18mm;" id="val-thn-haji"></span></span>
+          <span class="cb-item"><span class="cb-box" id="cb-pernah-umrah"></span> Umrah terakhir tahun : <span class="inline-field" style="min-width:18mm;" id="val-thn-umrah"></span></span>
+          <span class="cb-item"><span class="cb-box" id="cb-belum-pernah"></span> Belum Pernah</span>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Pekerjaan</td>
+      <td class="colon">:</td>
+      <td class="value" colspan="3">
+        <div class="cb-row">
+          <span class="cb-item"><span class="cb-box" id="cb-swasta"></span> Peg. Swasta</span>
+          <span class="cb-item"><span class="cb-box" id="cb-wirausaha"></span> Wiraswasta</span>
+          <span class="cb-item"><span class="cb-box" id="cb-pensiun"></span> Pensiun</span>
+          <span class="cb-item"><span class="cb-box" id="cb-pns"></span> PNS</span>
+          <span class="cb-item"><span class="cb-box" id="cb-irt"></span> Ibu Rumah Tangga</span>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Nomor Pasport</td>
+      <td class="colon">:</td>
+      <td class="value" style="width:40mm;"><span class="value-data" id="val-passport"></span></td>
+      <td class="label" style="width:20mm; padding-left:6px;">Berlaku s/d Tgl</td>
+      <td class="value"><span class="value-data" id="val-berlaku"></span></td>
+    </tr>
+    <tr>
+      <td class="label">Alamat Rumah</td>
+      <td class="colon">:</td>
+      <td class="value" colspan="3"><span class="value-data" id="val-alamat"></span></td>
+    </tr>
+    <tr>
+      <td class="label">No. Telp. Rumah</td>
+      <td class="colon">:</td>
+      <td class="value" style="width:40mm;"><span class="value-data" id="val-telp"></span></td>
+      <td class="label" style="padding-left:6px;">No. HP</td>
+      <td class="value"><span class="value-data" id="val-hp"></span></td>
+    </tr>
+    <tr>
+      <td class="label">Email</td>
+      <td class="colon">:</td>
+      <td class="value" colspan="3"><span class="value-data" id="val-email"></span></td>
+    </tr>
+    <tr>
+      <td class="label">No. Telp. Darurat</td>
+      <td class="colon">:</td>
+      <td class="value" style="width:40mm;"><span class="value-data" id="val-telp-darurat"></span></td>
+      <td class="label" style="padding-left:6px;">No. HP</td>
+      <td class="value"><span class="value-data" id="val-hp-darurat"></span></td>
+    </tr>
+  </table>
+
+  <!-- ===== SECTION: MENGIKUTI PROGRAM ===== -->
+  <div class="section-title" style="margin-top:3px;">PROGRAM KEBERANGKATAN</div>
+  <table class="form-table">
+    <tr>
+      <td class="label">Mengikuti Program Umrah</td>
+      <td class="colon">:</td>
+      <td class="value" colspan="3">
+        <div class="cb-row">
+          <span class="cb-item"><span class="cb-box" id="cb-hemat"></span> Hemat</span>
+          <span class="cb-item"><span class="cb-box" id="cb-promo"></span> Promo</span>
+          <span class="cb-item"><span class="cb-box" id="cb-premium"></span> Premium</span>
+          <span class="cb-item"><span class="cb-box" id="cb-eksekutif"></span> Eksekutif</span>
+          <span class="cb-item"><span class="cb-box" id="cb-plus"></span> Plus</span>
+          <span class="inline-field" style="min-width:35mm;" id="val-program-lain"></span>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Harga Paket</td>
+      <td class="colon">:</td>
+      <td class="value" style="width:35mm;"><span class="value-data" id="val-harga"></span> USD</td>
+      <td class="label" style="padding-left:6px;">Keberangkatan</td>
+      <td class="value"><span class="value-data" id="val-tgl-berangkat"></span></td>
+    </tr>
+    <tr>
+      <td class="label">Type Room</td>
+      <td class="colon">:</td>
+      <td class="value" colspan="3">
+        <div class="cb-row">
+          <span class="cb-item"><span class="cb-box" id="cb-double"></span> Double</span>
+          <span class="cb-item"><span class="cb-box" id="cb-triple"></span> Triple</span>
+          <span class="cb-item"><span class="cb-box" id="cb-quard"></span> Quard</span>
+          <span class="inline-field" style="min-width:30mm;" id="val-room-lain"></span>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Biaya Optional Tambahan</td>
+      <td class="colon">:</td>
+      <td class="value" colspan="3">
+        <div class="cb-row">
+          <span class="cb-item"><span class="cb-box" id="cb-trans"></span> Trans. Bandara</span>
+          <span class="cb-item"><span class="cb-box" id="cb-perl"></span> Perl. Umrah/Haji</span>
+          <span class="cb-item"><span class="cb-box" id="cb-passport"></span> Pasport</span>
+          <span class="cb-item"><span class="cb-box" id="cb-vaksin"></span> Suntik Vaksin</span>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Ukuran Pakaian</td>
+      <td class="colon">:</td>
+      <td class="value" colspan="3">
+        <div class="cb-row">
+          <span class="cb-item"><span class="cb-box" id="cb-s"></span> Size S</span>
+          <span class="cb-item"><span class="cb-box" id="cb-m"></span> Size M</span>
+          <span class="cb-item"><span class="cb-box" id="cb-l"></span> Size L</span>
+          <span class="cb-item"><span class="cb-box" id="cb-xl"></span> Size XL</span>
+          <span class="inline-field" style="min-width:25mm;" id="val-ukuran-lain"></span>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Sumber Informasi Umrah</td>
+      <td class="colon">:</td>
+      <td class="value" colspan="3">
+        <div class="cb-row">
+          <span class="cb-item"><span class="cb-box" id="cb-cabang"></span> Cabang</span>
+          <span class="cb-item"><span class="cb-box" id="cb-flyer"></span> Flyer/Brosur</span>
+          <span class="cb-item"><span class="cb-box" id="cb-iklan"></span> Iklan</span>
+          <span class="cb-item"><span class="cb-box" id="cb-sosmed"></span> Sosmed</span>
+          <span class="cb-item"><span class="cb-box" id="cb-spanduk"></span> Spanduk</span>
+          <span class="cb-item"><span class="cb-box" id="cb-referensi"></span> Referensi dari orang lain</span>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Referensi Haji/Umrah dari</td>
+      <td class="colon">:</td>
+      <td class="value" colspan="3">
+        Nama : <span class="inline-field" style="min-width:50mm;" id="val-ref-nama"></span>
+        &nbsp;&nbsp; No. HP : <span class="inline-field" style="min-width:30mm;" id="val-ref-hp"></span>
+      </td>
+    </tr>
+  </table>
+
+  <!-- ===== SECTION: KELENGKAPAN (PETUGAS) ===== -->
+  <div class="section-title" style="margin-top:3px;">DATA KELENGKAPAN PERJALANAN HAJI/UMRAH <span style="font-weight:normal; font-size:6.5pt;">(Diisi oleh Petugas)</span></div>
+
+  <!-- DOKUMEN -->
+  <div class="doc-section">
+    <!-- Dokumen Diserahkan -->
+    <div class="doc-box">
+      <div class="doc-title">DOKUMEN YANG HARUS DISERAHKAN</div>
+      <table class="doc-table">
+        <thead>
+          <tr>
+            <td class="doc-name">Dokumen</td>
+            <td class="doc-asli">Asli</td>
+            <td class="doc-copy">Copy</td>
+          </tr>
+        </thead>
+        <tbody id="dokumen-diserahkan">
+          <!-- diisi JS -->
+        </tbody>
+      </table>
+    </div>
+    <!-- Dokumen Belum Diserahkan -->
+    <div class="doc-box">
+      <div class="doc-title">DOKUMEN YANG BELUM DISERAHKAN</div>
+      <table class="doc-table">
+        <thead>
+          <tr>
+            <td class="doc-name">Dokumen</td>
+            <td class="doc-asli">Asli</td>
+            <td class="doc-copy">Copy</td>
+          </tr>
+        </thead>
+        <tbody id="dokumen-belum">
+          <!-- diisi JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CATATAN -->
+  <div style="margin-top:3px;">
+    <span style="font-size:7pt; font-weight:bold;">Catatan :</span>
+    <div class="catatan-box" id="val-catatan"></div>
+  </div>
+
+  <!-- PEMBAYARAN -->
+  <div class="section-title" style="margin-top:3px;">PEMBAYARAN DAPAT MELALUI</div>
+  <div class="payment-section">
+    <div class="payment-box">
+      <div class="pay-title">BANK MANDIRI</div>
+      <div class="pay-row"><span class="pay-label">No. Rekening</span><span class="pay-val">1300029587907</span></div>
+      <div class="pay-row"><span class="pay-label">Atas Nama</span><span class="pay-val">PT. ALFIAN SEJAHTERA ABADI</span></div>
+    </div>
+    <div class="payment-box">
+      <div class="pay-title">BANK BRI</div>
+      <div class="pay-row"><span class="pay-label">No. Rekening</span><span class="pay-val">0405.01.001886.30.0</span></div>
+      <div class="pay-row"><span class="pay-label">Atas Nama</span><span class="pay-val">PT. ALFIAN SEJAHTERA ABADI</span></div>
+    </div>
+    <div class="payment-box">
+      <div class="pay-title">BANK MUAMALAT</div>
+      <div class="pay-row"><span class="pay-label">No. Rekening</span><span class="pay-val">00000000</span></div>
+      <div class="pay-row"><span class="pay-label">Atas Nama</span><span class="pay-val">PT. ALFIAN SEJAHTERA ABADI</span></div>
+    </div>
+  </div>
+
+  <!-- FOOTER NOTE -->
+  <div class="footer-note">
+    * Dengan menandatangani formulir pendaftaran Haji/Umrah ini, berarti saya telah membaca, mengerti, dan menyetujui syarat dan ketentuan Haji/Umrah yang berlaku dan tercantum di balik Formulir Pendaftaran ini.<br>
+    * Data yang tercantum diatas adalah data yang sebenar-benarnya, dan jamaah yang bersangkutan bertanggung jawab atas data isian yang diberikan kepada pihak Manajemen Travel Haji Umroh PT. ALFIAN SEJAHTERA ABADI
+  </div>
+
+  <!-- ===== TANDA TANGAN ===== -->
+  <div class="sign-section" style="margin-top:4px;">
+
+    <!-- Calon Jamaah -->
+    <div class="sign-box">
+      <div class="sign-label">Calon Jamaah Haji / Umrah</div>
+      <div class="sign-date-line" id="sign-date-jamaah" style="margin-bottom:3px;">
+        <span id="val-kota-ttd"></span>, &nbsp;<span id="val-tgl-ttd"></span>
+      </div>
+      <div class="sign-canvas-wrap">
+        <canvas id="canvas-jamaah" width="155" height="70" title="Tanda tangan jamaah - gambar di sini"></canvas>
+        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:7pt; color:#ccc; pointer-events:none; text-align:center;" id="hint-jamaah">Tanda tangan di sini</div>
+      </div>
+      <div class="sign-name-line">( <span id="val-nama-ttd"></span> )</div>
+    </div>
+
+    <!-- Kolom kosong tengah (space) -->
+    <div style="flex:0.2;"></div>
+
+    <!-- Petugas -->
+    <div class="sign-box">
+      <div class="sign-label">Petugas</div>
+      <div class="sign-date-line" style="margin-bottom:3px;">&nbsp;</div>
+      <div class="sign-canvas-wrap">
+        <canvas id="canvas-petugas" width="155" height="70" title="Tanda tangan petugas - gambar di sini"></canvas>
+        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:7pt; color:#ccc; pointer-events:none; text-align:center;" id="hint-petugas">Tanda tangan di sini</div>
+      </div>
+      <div class="sign-name-line">( <span id="val-nama-petugas"></span> )</div>
+    </div>
+
+  </div>
+
+  <!-- Clear buttons below signatures (hidden on print) -->
+  <div class="no-print" style="display:flex; gap:5mm; margin-top:3px; padding: 0 2px;">
+    <button class="btn-clear" onclick="clearCanvas('canvas-jamaah','hint-jamaah')">✕ Hapus TTD Jamaah</button>
+    <div style="flex:0.2;"></div>
+    <button class="btn-clear" onclick="clearCanvas('canvas-petugas','hint-petugas')">✕ Hapus TTD Petugas</button>
+  </div>
+
+</div><!-- end .page -->
+
+<script>
+/* ===================================================
+   KONFIGURASI DATA - ISI DARI DATABASE DI SINI
+   ===================================================
+   Ganti nilai di objek `jamaahData` sesuai data dari DB
+*/
+const jamaahData = {
+  nama: "",
+  status: "",          // "belum_menikah" | "menikah" | "duda_janda"
+  jenisKelamin: "",    // "L" | "P"
+  ttl: "",
+  pernahHaji: false,
+  pernahUmrah: false,
+  belumPernah: true,
+  tahunHaji: "",
+  tahunUmrah: "",
+  pekerjaan: "",       // "swasta" | "wirausaha" | "pensiun" | "pns" | "irt"
+  noPassport: "",
+  berlakuSd: "",
+  alamat: "",
+  telpRumah: "",
+  noHp: "",
+  email: "",
+  telpDarurat: "",
+  hpDarurat: "",
+  program: "",         // "hemat"|"promo"|"premium"|"eksekutif"|"plus"|"lain"
+  programLain: "",
+  harga: "",
+  tglBerangkat: "",
+  typeRoom: "",        // "double"|"triple"|"quard"|"lain"
+  roomLain: "",
+  optTrans: false,
+  optPerl: false,
+  optPassport: false,
+  optVaksin: false,
+  ukuran: "",          // "s"|"m"|"l"|"xl"|"lain"
+  ukuranLain: "",
+  sumber: [],          // array: ["cabang","flyer","iklan","sosmed","spanduk","referensi"]
+  refNama: "",
+  refHp: "",
+  catatan: "",
+  kotaTtd: "Bandung",
+  tglTtd: "",
+  namaPetugas: "",
+  dokumenDiserahkan: {
+    passport: { asli: false, copy: false },
+    vaksin: { asli: false, copy: false },
+    ktp: { asli: false, copy: false },
+    kk: { asli: false, copy: false },
+    suratNikah: { asli: false, copy: false },
+    akteLahir: { asli: false, copy: false },
+    foto3x4: { asli: false, copy: false },
+    foto4x6: { asli: false, copy: false },
+  },
+  dokumenBelum: {
+    passport: { asli: false, copy: false },
+    vaksin: { asli: false, copy: false },
+    ktp: { asli: false, copy: false },
+    kk: { asli: false, copy: false },
+    suratNikah: { asli: false, copy: false },
+    akteLahir: { asli: false, copy: false },
+    foto3x4: { asli: false, copy: false },
+    foto4x6: { asli: false, copy: false },
+  }
+};
+
+const docLabels = {
+  passport: "Pasport",
+  vaksin: "Buku Vaksin Meningitis, Folio",
+  ktp: "KTP",
+  kk: "Kartu Keluarga",
+  suratNikah: "Surat Nikah",
+  akteLahir: "Akte Kelahiran",
+  foto3x4: "Pas Foto ukr. 3x4 = 5 lembar, berwarna latar putih, fokus 80%",
+  foto4x6: "Pas Foto ukr. 4x6 = 5 lembar, berwarna latar putih, fokus 80%"
+};
+
+/* ===================================================
+   RENDER DATA KE FORM
+   =================================================== */
+function renderForm(d) {
+  setText('val-nama', d.nama);
+  setText('val-ttl', d.ttl);
+  setText('val-passport', d.noPassport);
+  setText('val-berlaku', d.berlakuSd);
+  setText('val-alamat', d.alamat);
+  setText('val-telp', d.telpRumah);
+  setText('val-hp', d.noHp);
+  setText('val-email', d.email);
+  setText('val-telp-darurat', d.telpDarurat);
+  setText('val-hp-darurat', d.hpDarurat);
+  setText('val-harga', d.harga ? d.harga + ' USD' : '');
+  setText('val-tgl-berangkat', d.tglBerangkat);
+  setText('val-ref-nama', d.refNama);
+  setText('val-ref-hp', d.refHp);
+  setText('val-catatan', d.catatan);
+  setText('val-kota-ttd', d.kotaTtd);
+  setText('val-tgl-ttd', d.tglTtd);
+  setText('val-nama-ttd', d.nama);
+  setText('val-nama-petugas', d.namaPetugas);
+  setText('val-program-lain', d.programLain);
+  setText('val-room-lain', d.roomLain);
+  setText('val-ukuran-lain', d.ukuranLain);
+  setText('val-thn-haji', d.tahunHaji);
+  setText('val-thn-umrah', d.tahunUmrah);
+
+  // Status
+  if (d.status === 'belum_menikah') check('cb-belum-nikah');
+  if (d.status === 'menikah') check('cb-menikah');
+  if (d.status === 'duda_janda') check('cb-duda');
+  if (d.jenisKelamin === 'L') check('cb-l');
+  if (d.jenisKelamin === 'P') check('cb-p');
+
+  // Pernah Haji/Umrah
+  if (d.pernahHaji) check('cb-pernah-haji');
+  if (d.pernahUmrah) check('cb-pernah-umrah');
+  if (d.belumPernah) check('cb-belum-pernah');
+
+  // Pekerjaan
+  const pkMap = { swasta:'cb-swasta', wirausaha:'cb-wirausaha', pensiun:'cb-pensiun', pns:'cb-pns', irt:'cb-irt' };
+  if (pkMap[d.pekerjaan]) check(pkMap[d.pekerjaan]);
+
+  // Program
+  const pgMap = { hemat:'cb-hemat', promo:'cb-promo', premium:'cb-premium', eksekutif:'cb-eksekutif', plus:'cb-plus' };
+  if (pgMap[d.program]) check(pgMap[d.program]);
+
+  // Room
+  const rmMap = { double:'cb-double', triple:'cb-triple', quard:'cb-quard' };
+  if (rmMap[d.typeRoom]) check(rmMap[d.typeRoom]);
+
+  // Optional
+  if (d.optTrans) check('cb-trans');
+  if (d.optPerl) check('cb-perl');
+  if (d.optPassport) check('cb-passport');
+  if (d.optVaksin) check('cb-vaksin');
+
+  // Ukuran
+  const ukMap = { s:'cb-s', m:'cb-m', l:'cb-l', xl:'cb-xl' };
+  if (ukMap[d.ukuran]) check(ukMap[d.ukuran]);
+
+  // Sumber
+  const srMap = { cabang:'cb-cabang', flyer:'cb-flyer', iklan:'cb-iklan', sosmed:'cb-sosmed', spanduk:'cb-spanduk', referensi:'cb-referensi' };
+  (d.sumber || []).forEach(s => { if (srMap[s]) check(srMap[s]); });
+
+  // Dokumen
+  renderDokumen('dokumen-diserahkan', d.dokumenDiserahkan);
+  renderDokumen('dokumen-belum', d.dokumenBelum);
+}
+
+function setText(id, val) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = val || '';
+}
+
+function check(id) {
+  const el = document.getElementById(id);
+  if (el) { el.classList.add('checked'); el.textContent = '✓'; }
+}
+
+function renderDokumen(tbodyId, data) {
+  const tbody = document.getElementById(tbodyId);
+  if (!tbody) return;
+  tbody.innerHTML = '';
+  Object.keys(docLabels).forEach(key => {
+    const d = (data && data[key]) || { asli: false, copy: false };
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="doc-name">${docLabels[key]}</td>
+      <td class="doc-asli"><span class="cb-box ${d.asli?'checked':''}" style="margin:auto; display:block; width:9px;">${d.asli?'✓':''}</span></td>
+      <td class="doc-copy"><span class="cb-box ${d.copy?'checked':''}" style="margin:auto; display:block; width:9px;">${d.copy?'✓':''}</span></td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+/* ===================================================
+   CANVAS TANDA TANGAN
+   =================================================== */
+function initCanvas(canvasId, hintId) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let drawing = false;
+  let lastX = 0, lastY = 0;
+  let hasDrawn = false;
+
+  function getPos(e) {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    if (e.touches) {
+      return {
+        x: (e.touches[0].clientX - rect.left) * scaleX,
+        y: (e.touches[0].clientY - rect.top) * scaleY
+      };
+    }
+    return {
+      x: (e.clientX - rect.left) * scaleX,
+      y: (e.clientY - rect.top) * scaleY
+    };
+  }
+
+  function startDraw(e) {
+    drawing = true;
+    const pos = getPos(e);
+    lastX = pos.x; lastY = pos.y;
+    e.preventDefault();
+  }
+
+  function draw(e) {
+    if (!drawing) return;
+    e.preventDefault();
+    const pos = getPos(e);
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(pos.x, pos.y);
+    ctx.strokeStyle = '#1a3a6b';
+    ctx.lineWidth = 1.5;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.stroke();
+    lastX = pos.x; lastY = pos.y;
+    if (!hasDrawn) {
+      hasDrawn = true;
+      const hint = document.getElementById(hintId);
+      if (hint) hint.style.display = 'none';
+    }
+  }
+
+  function endDraw() { drawing = false; }
+
+  canvas.addEventListener('mousedown', startDraw);
+  canvas.addEventListener('mousemove', draw);
+  canvas.addEventListener('mouseup', endDraw);
+  canvas.addEventListener('mouseleave', endDraw);
+  canvas.addEventListener('touchstart', startDraw, { passive: false });
+  canvas.addEventListener('touchmove', draw, { passive: false });
+  canvas.addEventListener('touchend', endDraw);
+}
+
+function clearCanvas(canvasId, hintId) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const hint = document.getElementById(hintId);
+  if (hint) hint.style.display = '';
+}
+
+function clearAllSigns() {
+  clearCanvas('canvas-jamaah', 'hint-jamaah');
+  clearCanvas('canvas-petugas', 'hint-petugas');
+}
+
+/* ===================================================
+   INIT
+   =================================================== */
+document.addEventListener('DOMContentLoaded', function() {
+  renderForm(jamaahData);
+  initCanvas('canvas-jamaah', 'hint-jamaah');
+  initCanvas('canvas-petugas', 'hint-petugas');
+});
+</script>
+</body>
+</html>

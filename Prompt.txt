@@ -1,0 +1,232 @@
+Create a premium modern mobile-first marketplace web application UI using Next.js App Router + Tailwind CSS + shadcn/ui.
+
+MAIN CONCEPT:
+- The application must feel like a native mobile marketplace app.
+- Inspired by Shopee mobile UX but cleaner, more premium, and modern.
+- Focus heavily on mobile-first experience.
+- Even on desktop, always display mobile layout centered on screen.
+- Max width mobile container: 430px.
+- UI must feel fast, lightweight, smooth, and app-like.
+
+DESIGN STYLE:
+- Bright modern marketplace design
+- Clean compact layout
+- Small but very readable typography
+- Dense but organized mobile UI
+- Modern startup/fintech/marketplace hybrid style
+- Elegant rounded cards
+- Clear visual hierarchy
+- Lightweight premium feel
+- Modern spacing system
+- Smooth animations
+- High readability on mobile
+
+PRIMARY COLOR SYSTEM:
+Primary root color:
+#7C3AED
+
+Theme must heavily use:
+- #7C3AED
+- gradients based on #7C3AED
+- bright blue gradients
+- purple-blue vibrant tones
+- premium glowing accents
+
+Gradient examples:
+- purple → bright blue
+- #7C3AED → #3B82F6
+- #7C3AED → #60A5FA
+
+Use gradients on:
+- buttons
+- hero sections
+- active menu
+- badges
+- cards
+- highlights
+
+COLOR STYLE:
+- Bright clean white backgrounds
+- Purple accent dominance
+- Blue secondary highlights
+- Modern gradient UI
+- Small vibrant details
+- Premium marketplace appearance
+- Clean contrast
+- Soft shadows
+- Subtle glassmorphism
+
+TYPOGRAPHY:
+- Small compact text
+- Extremely readable
+- Modern mobile typography
+- Compact spacing
+- Marketplace-style UI density
+- Sharp text rendering
+- Avoid oversized typography
+
+LAYOUT:
+- Fixed centered mobile layout
+- Full height mobile app container
+- Sticky bottom navigation
+- Sticky top search section
+- Smooth scroll
+- Lazy loading optimized
+- Skeleton loading components
+- Gallery highlight support
+- Smooth image transitions
+
+BOTTOM NAVIGATION:
+Include sticky bottom menu:
+- Home
+- Feeds
+- Pack
+- Agen
+- Akun
+
+Use modern mobile tab bar:
+- rounded top corners
+- floating effect
+- active gradient indicator
+- icon + small label
+- smooth transitions
+
+AUTHENTICATION:
+- Google login only
+- Google register only
+- No manual email/password
+- Use modern OAuth UX
+- Beautiful login/register screen
+- Once logged in:
+  - show profile dashboard
+  - account overview
+  - profile settings
+
+PAGES:
+
+1. HOME PAGE
+Include:
+- modern hero section
+- auto slider/banner carousel
+- search pack section at top
+- comparison icon section
+- category shortcuts
+- highlight gallery
+- featured cards
+- promotional cards
+- marketplace-style sections
+- lazy loading images
+- shimmer loading
+
+2. FEEDS PAGE
+- dummy feed data
+- card-based timeline
+- mobile social feed style
+
+3. PACK PAGE
+- dummy package/product cards
+- compact marketplace layout
+- small readable text
+- modern card design
+
+4. AGEN PAGE
+- dummy agent list
+- modern compact cards
+- contact buttons
+- highlight status badges
+
+5. AKUN PAGE
+Before login:
+- modern login/register screen
+- Google auth only
+
+After login:
+- mobile dashboard profile
+- profile card
+- activity summary
+- menu list
+- settings
+- logout
+
+HEADER FEATURES:
+Top section must include:
+- currency switcher
+- language switcher with icons
+- notification icon
+- search functionality
+- compact mobile toolbar
+
+MODALS & TOASTERS:
+Enable:
+- bottom sheet modal
+- popup modal
+- toaster notifications
+- animated transitions
+- mobile native feel
+
+COMPONENTS:
+Use reusable components:
+- cards
+- buttons
+- tabs
+- modals
+- sliders
+- skeleton loaders
+- image galleries
+- badges
+- floating buttons
+
+ANIMATIONS:
+- Smooth 60fps
+- Native mobile feel
+- Subtle transitions only
+- Lightweight animation
+- Avoid heavy effects
+
+PERFORMANCE:
+- Ultra fast loading
+- Lazy loading everywhere possible
+- Optimized images
+- Lightweight rendering
+- Mobile low-end device optimized
+
+TECHNICAL:
+- Next.js App Router
+- Tailwind CSS
+- shadcn/ui
+- Component architecture
+- SEO friendly
+- PWA ready
+- Accessibility support
+- Production-ready structure
+
+OUTPUT:
+Generate:
+- production-ready UI
+- clean folder structure
+- reusable components
+- mobile-first architecture
+- elegant marketplace experience
+- premium responsive UI
+
+
+
+
+
+Requirements:
+- Extremely fast initial load
+- SEO optimized
+- SSR + SSG where possible
+- Minimal client-side JavaScript
+- Use React Server Components by default
+- Optimized for low-end mobile devices
+- Lighthouse score target 95+
+- Multi-language support (id, en, ar)
+- RTL support for Arabic
+- Use next-intl
+- Backend API in .NET
+- PostgreSQL database
+- Optimized images using next/image
+- Brotli/gzip ready
+- Production-ready architecture
+- VPS deployment ready with Nginx

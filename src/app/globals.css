@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+        @apply bg-zinc-950 text-zinc-900 antialiased;
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    }
+
+    [dir="rtl"] body {
+        font-family: "Arabic Typesetting", "Noto Naskh Arabic", "Amiri", serif;
+    }
+}
+
+@layer components {
+    .mobile-container {
+        @apply max-w-mobile mx-auto bg-white min-h-screen shadow-2xl flex flex-col relative;
+    }
+
+    .page-content {
+        @apply flex-1 overflow-y-auto pb-24;
+    }
+
+    .g-main {
+        background: linear-gradient(135deg, #7c3aed, #3b82f6);
+    }
+
+    .g-bright {
+        background: linear-gradient(135deg, #7c3aed, #60a5fa);
+    }
+
+    .g-deep {
+        background: linear-gradient(135deg, #5b21b6, #7c3aed);
+    }
+
+    .g-text {
+        background: linear-gradient(135deg, #7c3aed, #3b82f6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .sb-hide::-webkit-scrollbar {
+        display: none;
+    }
+
+    .sb-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .shimmer-bg {
+        background: linear-gradient(
+            90deg,
+            #f0f0f0 25%,
+            #e0e0e0 50%,
+            #f0f0f0 75%
+        );
+        background-size: 200% 100%;
+        animation: shimmer 1.5s infinite linear;
+    }
+
+    .badge-sale {
+        @apply text-white text-[9px] px-2 py-0.5 rounded-full font-bold;
+        background: linear-gradient(90deg, #ef4444, #f97316);
+    }
+
+    .badge-promo {
+        @apply text-white text-[9px] px-2 py-0.5 rounded-full font-bold;
+        background: linear-gradient(90deg, #f59e0b, #ef4444);
+    }
+
+    .badge-hot {
+        @apply text-white text-[9px] px-2 py-0.5 rounded-full font-bold;
+        background: linear-gradient(90deg, #ef4444, #dc2626);
+    }
+
+    .section-title {
+        @apply text-[11px] font-extrabold text-zinc-800 mb-2;
+    }
+}
+
+@layer utilities {
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+/* Mobile native feel */
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.seat-bar {
+    height: 5px;
+    border-radius: 99px;
+    background: #e5e7eb;
+}
+
+.seat-fill {
+    height: 5px;
+    border-radius: 99px;
+    background: linear-gradient(90deg, #7c3aed, #60a5fa);
+}

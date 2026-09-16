@@ -1,0 +1,8 @@
+<!-- Event snippet for Kontak conversion page -->
+<script>
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18205195766/k-4FCI7FsLccEPb79OhD',
+      'value': 1.0,
+      'currency': 'IDR'
+  });
+</script>

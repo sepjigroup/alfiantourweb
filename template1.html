@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alfian Tour</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .mobile-frame{max-width:430px;margin:0 auto;box-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);border-radius:48px;overflow:hidden;border:12px solid #111;height:812px;display:flex;flex-direction:column;background:#fff}
+        .page{display:none}
+        .page.active{display:block}
+        .nav-active{color:#7C3AED}
+        .hero-text{font-size:1.25rem;line-height:1.25}
+        .floating-btn{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:30}
+        @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+        .shimmer{background:linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%);background-size:200% 100%;animation:shimmer 1.5s infinite linear}
+    </style>
+</head>
+<body class="bg-zinc-950 flex items-center justify-center min-h-screen">
+<div id="app" class="mobile-frame flex flex-col w-full">
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 bg-white border-b px-4 py-3 flex items-center gap-3">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-gradient-to-br from-[#7C3AED] to-[#3B82F6] rounded-3xl flex items-center justify-center text-white text-2xl">🕌</div>
+            <span class="text-2xl font-semibold text-[#7C3AED]">Alfian Tour</span>
+        </div>
+        <div onclick="openSearch()" class="flex-1 flex justify-center cursor-pointer text-2xl">🔎</div>
+        <div class="relative">
+            <div onclick="toggleCurrency()" class="text-2xl cursor-pointer">💰</div>
+            <div id="currency-dropdown" class="hidden absolute right-0 mt-2 bg-white shadow-xl rounded-3xl py-2 w-40 text-sm z-[9999]">
+                <div onclick="selectCurrency('IDR')" class="px-6 py-3 hover:bg-zinc-100 cursor-pointer">🇮🇩 IDR</div>
+                <div onclick="selectCurrency('USD')" class="px-6 py-3 hover:bg-zinc-100 cursor-pointer">🇺🇸 USD</div>
+                <div onclick="selectCurrency('SAR')" class="px-6 py-3 hover:bg-zinc-100 cursor-pointer">🇸🇦 SAR</div>
+                <div onclick="selectCurrency('MYR')" class="px-6 py-3 hover:bg-zinc-100 cursor-pointer">🇲🇾 MYR</div>
+                <div onclick="selectCurrency('AUTO')" class="px-6 py-3 hover:bg-zinc-100 cursor-pointer border-t">Auto Convert</div>
+            </div>
+        </div>
+        <div class="relative">
+            <div onclick="toggleLanguage()" class="text-2xl cursor-pointer">🌐</div>
+            <div id="lang-dropdown" class="hidden absolute right-0 mt-2 bg-white shadow-xl rounded-3xl py-2 w-40 text-sm z-[9999]">
+                <div onclick="selectLang('id')" class="px-6 py-3 hover:bg-zinc-100 cursor-pointer">🇮🇩 Bahasa Indonesia</div>
+                <div onclick="selectLang('en')" class="px-6 py-3 hover:bg-zinc-100 cursor-pointer">🇬🇧 English</div>
+                <div onclick="selectLang('ar')" class="px-6 py-3 hover:bg-zinc-100 cursor-pointer">🇸🇦 عربي</div>
+            </div>
+        </div>
+        <div onclick="showToast('Wishlist dibuka')" class="text-2xl cursor-pointer">❤️</div>
+    </header>
+
+    <!-- PAGES -->
+    <div class="flex-1 overflow-y-auto pb-20">
+        <!-- HOME -->
+        <div id="home" class="page active p-4 space-y-6">
+            <!-- HERO -->
+            <div class="relative h-48 bg-gradient-to-r from-[#7C3AED] to-[#3B82F6] rounded-3xl overflow-hidden" id="hero">
+                <div id="slides" class="flex h-full transition-transform duration-700">
+                    <div onclick="openGallery()" class="min-w-full flex items-end p-5 text-white cursor-pointer">
+                        <div class="flex-1">
+                            <div class="hero-text font-bold">Umrah Haji 2026</div>
+                            <div class="text-xs mt-1 opacity-90">Ethiopian Airlines • 9 Jun</div>
+                            <button onclick="event.stopImmediatePropagation();buyDemo()" class="mt-3 bg-white text-[#7C3AED] px-5 py-1.5 rounded-3xl text-xs font-medium">Pesan</button>
+                        </div>
+                        <div class="text-6xl">🕋</div>
+                    </div>
+                    <div onclick="openGallery()" class="min-w-full flex items-end p-5 text-white cursor-pointer">
+                        <div class="flex-1">
+                            <div class="hero-text font-bold">Paket Wisata + Umrah</div>
+                            <div class="text-xs mt-1 opacity-90">Cairo &amp; Makkah</div>
+                            <button onclick="event.stopImmediatePropagation();buyDemo()" class="mt-3 bg-white text-[#7C3AED] px-5 py-1.5 rounded-3xl text-xs font-medium">Lihat</button>
+                        </div>
+                        <div class="text-6xl">✈️</div>
+                    </div>
+                </div>
+                <div class="absolute bottom-4 left-1/2 flex gap-2">
+                    <div onclick="setSlide(0);event.stopImmediatePropagation()" class="dot w-2 h-2 bg-white rounded-full"></div>
+                    <div onclick="setSlide(1);event.stopImmediatePropagation()" class="dot w-2 h-2 bg-white/60 rounded-full"></div>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div>
+                <div class="flex justify-between text-sm font-medium mb-3"><span>Layanan</span><span onclick="nav('pack')" class="text-[#7C3AED]">Semua →</span></div>
+                <div class="grid grid-cols-5 gap-3 text-center text-[10px]">
+                    <div onclick="nav('pack')" class="flex flex-col items-center"><div class="w-12 h-12 rounded-3xl bg-gradient-to-br from-[#7C3AED] to-[#60A5FA] flex items-center justify-center text-3xl mb-1">🕋</div>Umrah</div>
+                    <div onclick="nav('pack')" class="flex flex-col items-center"><div class="w-12 h-12 rounded-3xl bg-gradient-to-br from-[#7C3AED] to-[#60A5FA] flex items-center justify-center text-3xl mb-1">🕋</div>Haji</div>
+                    <div onclick="nav('pack')" class="flex flex-col items-center"><div class="w-12 h-12 rounded-3xl bg-gradient-to-br from-[#7C3AED] to-[#60A5FA] flex items-center justify-center text-3xl mb-1">🏞️</div>Wisata</div>
+                    <div onclick="nav('pack')" class="flex flex-col items-center"><div class="w-12 h-12 rounded-3xl bg-gradient-to-br from-[#7C3AED] to-[#60A5FA] flex items-center justify-center text-3xl mb-1">✈️</div>Tiket</div>
+                    <div onclick="nav('pack')" class="flex flex-col items-center"><div class="w-12 h-12 rounded-3xl bg-gradient-to-br from-[#7C3AED] to-[#60A5FA] flex items-center justify-center text-3xl mb-1">🏨</div>Hotel</div>
+                </div>
+            </div>
+
+            <!-- Paket Unggulan -->
+            <div>
+                <div class="flex justify-between text-sm font-medium mb-3"><span>Paket Unggulan</span><span onclick="nav('pack')" class="text-[#7C3AED]">Lihat semua →</span></div>
+                <div class="grid grid-cols-2 gap-3">
+                    <!-- Card 1 -->
+                    <div class="bg-white rounded-3xl overflow-hidden border">
+                        <div onclick="openGallery()" class="h-36 bg-[url('https://picsum.photos/id/1015/400/300')] bg-cover cursor-pointer"></div>
+                        <div onclick="goToDetails()" class="p-3 cursor-pointer">
+                            <div class="text-xs text-[#7C3AED]">Umrah 2026</div>
+                            <div class="text-sm font-semibold line-clamp-2 mt-1">Ethiopian Airlines • 9 Jun</div>
+                            <div class="text-base font-bold mt-2">Rp 26.9jt</div>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="bg-white rounded-3xl overflow-hidden border">
+                        <div onclick="openGallery()" class="h-36 bg-[url('https://picsum.photos/id/201/400/300')] bg-cover cursor-pointer"></div>
+                        <div onclick="goToDetails()" class="p-3 cursor-pointer">
+                            <div class="text-xs text-[#7C3AED]">Umrah + Cairo</div>
+                            <div class="text-sm font-semibold line-clamp-2 mt-1">Egypt Air • 1 Jul</div>
+                            <div class="text-base font-bold mt-2">Rp 27.9jt</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flash Sale -->
+            <div onclick="nav('pack')" class="bg-gradient-to-r from-[#7C3AED] to-[#3B82F6] text-white rounded-3xl p-5 flex justify-between items-center cursor-pointer">
+                <div>
+                    <div class="uppercase text-xs tracking-widest">Flash Sale</div>
+                    <div class="text-xl font-bold">Umrah Liburan Sekolah</div>
+                    <div class="text-xs">Rp 26.9jt • Lion Air</div>
+                </div>
+                <div class="text-5xl">🕌</div>
+            </div>
+
+            <!-- Terkini Package Terbaru -->
+            <div>
+                <div class="flex justify-between text-sm font-medium mb-3"><span>Terkini • Package Terbaru</span></div>
+                <div class="flex gap-3 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide">
+                    <div class="bg-white border rounded-3xl p-3 w-40 flex-shrink-0">
+                        <div onclick="openGallery()" class="h-32 bg-[url('https://picsum.photos/id/301/400/300')] bg-cover rounded-2xl relative cursor-pointer">
+                            <span class="absolute top-2 left-2 bg-red-500 text-white text-[10px] px-3 py-px rounded-3xl">Hot</span>
+                        </div>
+                        <div onclick="goToDetails()" class="mt-3 cursor-pointer">
+                            <div class="text-xs font-medium">Umrah 12 Hari</div>
+                            <div class="text-xs text-zinc-400">12 Jun 2026</div>
+                        </div>
+                    </div>
+                    <div class="bg-white border rounded-3xl p-3 w-40 flex-shrink-0">
+                        <div onclick="openGallery()" class="h-32 bg-[url('https://picsum.photos/id/401/400/300')] bg-cover rounded-2xl relative cursor-pointer">
+                            <span class="absolute top-2 left-2 bg-amber-500 text-white text-[10px] px-3 py-px rounded-3xl">Promo</span>
+                        </div>
+                        <div onclick="goToDetails()" class="mt-3 cursor-pointer">
+                            <div class="text-xs font-medium">Haji Khusus</div>
+                            <div class="text-xs text-zinc-400">20 Jun 2026</div>
+                        </div>
+                    </div>
+                    <div class="bg-white border rounded-3xl p-3 w-40 flex-shrink-0">
+                        <div onclick="openGallery()" class="h-32 bg-[url('https://picsum.photos/id/501/400/300')] bg-cover rounded-2xl relative cursor-pointer">
+                            <span class="absolute top-2 left-2 bg-green-500 text-white text-[10px] px-3 py-px rounded-3xl">Flash Sale</span>
+                        </div>
+                        <div onclick="goToDetails()" class="mt-3 cursor-pointer">
+                            <div class="text-xs font-medium">Wisata + Umrah</div>
+                            <div class="text-xs text-zinc-400">5 Jul 2026</div>
+                        </div>
+                    </div>
+                    <div class="bg-white border rounded-3xl p-3 w-40 flex-shrink-0">
+                        <div onclick="openGallery()" class="h-32 bg-[url('https://picsum.photos/id/601/400/300')] bg-cover rounded-2xl cursor-pointer"></div>
+                        <div onclick="goToDetails()" class="mt-3 cursor-pointer">
+                            <div class="text-xs font-medium">Paket Reguler</div>
+                            <div class="text-xs text-zinc-400">15 Jul 2026</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FEEDS -->
+        <div id="feeds" class="page p-4 space-y-6">
+            <div class="text-lg font-semibold mb-4">Berita &amp; Tips</div>
+            <div class="bg-white rounded-3xl p-4 flex gap-4">
+                <div class="flex-1"><div class="text-xs text-zinc-400">2 jam lalu</div><div class="font-medium mt-1">Haji Mabrur Impian Setiap Muslim</div></div>
+            </div>
+            <div class="bg-white rounded-3xl p-4 flex gap-4">
+                <div class="flex-1"><div class="text-xs text-zinc-400">kemarin</div><div class="font-medium mt-1">Tips Lengkap Agar Tak Kesasar di Masjidil Haram</div></div>
+            </div>
+        </div>
+
+        <!-- PACK -->
+        <div id="pack" class="page p-4">
+            <div class="text-lg font-semibold mb-4">Paket Umrah &amp; Haji</div>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-white border rounded-3xl p-3">
+                    <div onclick="openGallery()" class="h-40 bg-gradient-to-br from-[#7C3AED] to-[#60A5FA] rounded-3xl flex items-end p-4 text-white cursor-pointer"><span class="bg-white/30 text-xs px-4 py-1 rounded-3xl">9 Jun</span><div class="mt-auto font-semibold">Umrah Ethiopian</div></div>
+                    <div onclick="goToDetails()" class="mt-4 flex justify-between text-sm cursor-pointer"><span class="font-bold">Rp 26.9jt</span><span class="text-emerald-500">211 kursi</span></div>
+                </div>
+                <div class="bg-white border rounded-3xl p-3">
+                    <div onclick="openGallery()" class="h-40 bg-gradient-to-br from-[#7C3AED] to-[#60A5FA] rounded-3xl flex items-end p-4 text-white cursor-pointer"><span class="bg-white/30 text-xs px-4 py-1 rounded-3xl">1 Jul</span><div class="mt-auto font-semibold">Umrah + Cairo</div></div>
+                    <div onclick="goToDetails()" class="mt-4 flex justify-between text-sm cursor-pointer"><span class="font-bold">Rp 27.9jt</span><span class="text-emerald-500">477 kursi</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AGEN -->
+        <div id="agen" class="page p-4">
+            <div class="text-lg font-semibold mb-4">Hubungi Agen Profesional</div>
+            <div class="flex gap-2 mb-6 overflow-x-auto pb-1">
+                <div onclick="filterAgen(this)" class="filter-chip px-5 py-2 bg-[#7C3AED] text-white text-xs rounded-3xl whitespace-nowrap">Semua</div>
+                <div onclick="filterAgen(this)" class="filter-chip px-5 py-2 bg-white border text-xs rounded-3xl whitespace-nowrap">Bandung</div>
+                <div onclick="filterAgen(this)" class="filter-chip px-5 py-2 bg-white border text-xs rounded-3xl whitespace-nowrap">Jakarta</div>
+                <div onclick="filterAgen(this)" class="filter-chip px-5 py-2 bg-white border text-xs rounded-3xl whitespace-nowrap">Surabaya</div>
+                <div onclick="filterAgen(this)" class="filter-chip px-5 py-2 bg-white border text-xs rounded-3xl whitespace-nowrap">Medan</div>
+            </div>
+            <div id="agen-list" class="space-y-4">
+                <div class="bg-white rounded-3xl p-4 flex items-center gap-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-[#7C3AED] to-[#3B82F6] rounded-3xl flex items-center justify-center text-white text-2xl">AT</div>
+                    <div class="flex-1">
+                        <div class="font-semibold">Alfian Tour Official</div>
+                        <div class="text-xs text-emerald-500 flex items-center gap-1"><span class="text-lg">✓</span>Verified • Bandung</div>
+                        <div class="text-xs text-zinc-400">4.9 ★ • 124 ulasan</div>
+                    </div>
+                    <button onclick="contactDemo(this)" class="bg-[#7C3AED] text-white text-xs px-6 py-3 rounded-3xl">Hubungi WA</button>
+                </div>
+                <div class="bg-white rounded-3xl p-4 flex items-center gap-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-[#7C3AED] to-[#3B82F6] rounded-3xl flex items-center justify-center text-white text-2xl">MT</div>
+                    <div class="flex-1">
+                        <div class="font-semibold">Makkah Travel</div>
+                        <div class="text-xs text-emerald-500 flex items-center gap-1"><span class="text-lg">✓</span>Verified • Jakarta</div>
+                        <div class="text-xs text-zinc-400">5.0 ★ • 89 ulasan</div>
+                    </div>
+                    <button onclick="contactDemo(this)" class="bg-[#7C3AED] text-white text-xs px-6 py-3 rounded-3xl">Hubungi WA</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- DETAILS PAGE -->
+        <div id="details" class="page p-4">
+            <div class="flex justify-between items-center mb-4">
+                <button onclick="nav('pack')" class="text-3xl">←</button>
+                <div onclick="toggleWishlist(this)" class="text-3xl cursor-pointer">♡</div>
+            </div>
+            <div class="bg-white rounded-3xl overflow-hidden">
+                <div class="h-64 bg-[url('https://picsum.photos/id/1015/800/600')] bg-cover"></div>
+                <div class="p-5">
+                    <div class="flex justify-between">
+                        <div>
+                            <span class="bg-red-500 text-white text-xs px-4 py-1 rounded-3xl">Flash Sale</span>
+                            <div class="text-2xl font-bold mt-3">Umrah Ethiopian Airlines</div>
+                            <div class="text-sm text-zinc-500">9 Juni 2026 • 12 Hari</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-3xl font-bold text-[#7C3AED]">Rp 26.9jt</div>
+                            <div class="text-xs text-emerald-500">211 kursi tersisa</div>
+                        </div>
+                    </div>
+                    <div class="mt-6 text-sm leading-relaxed">
+                        Paket Umrah premium Ethiopian Airlines. Termasuk tiket PP, hotel 5★ di Makkah &amp; Madinah, transportasi VIP, dan bimbingan umrah lengkap.
+                    </div>
+                    <div class="mt-8 flex gap-4">
+                        <button onclick="addToWishlist()" class="flex-1 border border-[#7C3AED] text-[#7C3AED] py-4 rounded-3xl text-sm font-medium">Tambah ke Wishlist</button>
+                        <button onclick="openWA()" class="flex-1 bg-[#7C3AED] text-white py-4 rounded-3xl text-sm font-medium">Hubungi WA Langsung</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AKUN -->
+        <div id="akun" class="page p-4">
+            <div id="akun-inner"></div>
+        </div>
+    </div>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bg-white border-t mt-auto">
+        <div class="flex justify-around py-2 text-xs text-zinc-400">
+            <div onclick="nav('home')" class="flex flex-col items-center nav-active"><div class="text-3xl">🏠</div><div>Home</div></div>
+            <div onclick="nav('feeds')" class="flex flex-col items-center"><div class="text-3xl">📰</div><div>Feeds</div></div>
+            <div onclick="nav('pack')" class="flex flex-col items-center"><div class="text-3xl">📦</div><div>Paket</div></div>
+            <div onclick="nav('agen')" class="flex flex-col items-center"><div class="text-3xl">👥</div><div>Agen</div></div>
+            <div onclick="nav('akun')" class="flex flex-col items-center"><div class="text-3xl">👤</div><div>Akun</div></div>
+        </div>
+    </nav>
+
+    <!-- Search Modal -->
+    <div onclick="if(event.target.id==='search-modal')hideModal()" id="search-modal" class="hidden fixed inset-0 bg-black/60 z-[9999] flex items-end">
+        <div onclick="event.stopImmediatePropagation()" class="bg-white w-full max-w-[430px] mx-auto rounded-t-3xl p-6">
+            <div class="flex items-center border-b pb-3"><span class="text-3xl mr-3">🔎</span><input id="search-input" type="text" placeholder="Cari paket..." class="flex-1 border-0 bg-transparent text-sm focus:outline-none"></div>
+            <div class="mt-8 text-xs text-zinc-400">Rekomendasi Paket</div>
+            <div onclick="hideModal();nav('pack')" class="mt-4 py-4 px-5 bg-zinc-100 rounded-3xl text-sm cursor-pointer">Umrah Ethiopian 9 Juni 2026</div>
+            <div onclick="hideModal();nav('pack')" class="mt-3 py-4 px-5 bg-zinc-100 rounded-3xl text-sm cursor-pointer">Umrah + Cairo 1 Juli 2026</div>
+        </div>
+    </div>
+
+    <!-- Gallery Modal -->
+    <div onclick="if(event.target.id==='gallery-modal')closeGallery()" id="gallery-modal" class="hidden fixed inset-0 bg-black z-[10000] flex flex-col">
+        <div class="flex justify-end p-4"><button onclick="closeGallery()" class="text-white text-4xl">✕</button></div>
+        <div class="flex-1 flex items-center justify-center relative overflow-hidden">
+            <div id="gallery-slides" class="flex h-full w-full transition-transform duration-500"></div>
+            <button onclick="prevGallery()" class="absolute left-6 text-white text-5xl z-20">‹</button>
+            <button onclick="nextGallery()" class="absolute right-6 text-white text-5xl z-20">›</button>
+            <button onclick="goToDetails()" class="floating-btn bg-white text-[#7C3AED] px-8 py-3 rounded-3xl shadow-2xl text-sm font-medium flex items-center gap-2 z-30">
+                <span>Selengkapnya</span>
+                <span class="text-xl">→</span>
+            </button>
+        </div>
+        <div id="gallery-dots" class="flex justify-center gap-2 pb-8"></div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" onclick="this.classList.add('hidden')" class="hidden fixed bottom-24 left-1/2 -translate-x-1/2 bg-zinc-800 text-white px-6 py-4 rounded-3xl text-sm shadow-2xl z-[10000]"></div>
+</div>
+
+<script>
+tailwind.config={theme:{extend:{colors:{primary:'#7C3AED'}}}}
+let loggedIn=false
+let slideIndex=0
+let galleryIndex=0
+const galleryImages=["https://picsum.photos/id/1015/800/1200","https://picsum.photos/id/201/800/1200","https://picsum.photos/id/301/800/1200","https://picsum.photos/id/401/800/1200"]
+
+function nav(page){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'))
+    document.getElementById(page).classList.add('active')
+    if(page==='akun') renderAkun()
+}
+
+function setSlide(n){slideIndex=n;document.getElementById('slides').style.transform=`translateX(-${n*100}%)`}
+function initCarousel(){setInterval(()=>{slideIndex=(slideIndex+1)%2;setSlide(slideIndex)},4000)}
+
+function buyDemo(){showToast('Paket ditambahkan')}
+function contactDemo(el){el.textContent='✓ Terkirim';setTimeout(()=>{el.textContent='Hubungi WA';showToast('Pesan terkirim ke WA')},1200)}
+
+function renderAkun(){
+    const el=document.getElementById('akun-inner')
+    if(loggedIn){
+        el.innerHTML=`<div class="flex gap-4 items-center"><div class="w-16 h-16 bg-gradient-to-br from-[#7C3AED] to-[#3B82F6] rounded-3xl"></div><div><div class="font-semibold text-xl">Kim Yo-han</div><div class="text-emerald-500 text-xs">@yohanapriandi</div></div></div><div class="mt-8 bg-zinc-100 rounded-3xl p-6"><div class="flex justify-between"><span>Saldo</span><span class="font-bold">Rp 4.250.000</span></div></div><div onclick="logout()" class="mt-8 flex justify-center bg-red-50 text-red-600 py-4 rounded-3xl font-medium cursor-pointer">Keluar</div>`
+    }else{
+        el.innerHTML=`<div class="flex flex-col items-center justify-center h-[420px]"><div class="text-7xl mb-6">👤</div><div class="font-semibold">Belum login</div><button onclick="googleLogin()" class="mt-8 bg-gradient-to-r from-[#7C3AED] to-[#3B82F6] text-white px-12 py-4 rounded-3xl">Login dengan Google</button></div>`
+    }
+}
+
+function googleLogin(){loggedIn=true;hideModal();renderAkun();nav('akun');showToast('Login berhasil')}
+function logout(){loggedIn=false;renderAkun();showToast('Keluar akun')}
+
+function openSearch(){document.getElementById('search-modal').classList.remove('hidden');document.getElementById('search-modal').classList.add('flex')}
+function hideModal(){document.querySelectorAll('#search-modal').forEach(m=>{m.classList.add('hidden');m.classList.remove('flex')})}
+
+function toggleCurrency(){document.getElementById('currency-dropdown').classList.toggle('hidden')}
+function selectCurrency(cur){showToast('Mata uang: '+cur);document.getElementById('currency-dropdown').classList.add('hidden')}
+
+function toggleLanguage(){document.getElementById('lang-dropdown').classList.toggle('hidden')}
+function selectLang(lng){showToast('Bahasa: '+lng);document.getElementById('lang-dropdown').classList.add('hidden')}
+
+function showToast(txt){
+    const t=document.getElementById('toast')
+    t.textContent=txt
+    t.style.display='block'
+    setTimeout(()=>{t.style.display='none'},2200)
+}
+
+// Gallery
+function openGallery(){
+    galleryIndex=0
+    const container=document.getElementById('gallery-slides')
+    container.innerHTML=''
+    galleryImages.forEach(src=>{
+        const div=document.createElement('div')
+        div.className='min-w-full h-full flex items-center justify-center'
+        div.innerHTML=`<img src="${src}" class="max-h-full max-w-full object-contain">`
+        container.appendChild(div)
+    })
+    document.getElementById('gallery-modal').classList.remove('hidden')
+    document.getElementById('gallery-modal').classList.add('flex')
+    updateDots()
+}
+
+function closeGallery(){
+    document.getElementById('gallery-modal').classList.add('hidden')
+    document.getElementById('gallery-modal').classList.remove('flex')
+}
+
+function prevGallery(){galleryIndex=Math.max(0,galleryIndex-1);document.getElementById('gallery-slides').style.transform=`translateX(-${galleryIndex*100}%)`;updateDots()}
+function nextGallery(){galleryIndex=Math.min(galleryImages.length-1,galleryIndex+1);document.getElementById('gallery-slides').style.transform=`translateX(-${galleryIndex*100}%)`;updateDots()}
+function updateDots(){
+    const dotsContainer=document.getElementById('gallery-dots')
+    dotsContainer.innerHTML=''
+    galleryImages.forEach((_,i)=>{
+        const dot=document.createElement('div')
+        dot.className=`w-2 h-2 rounded-full ${i===galleryIndex?'bg-white':'bg-white/40'}`
+        dotsContainer.appendChild(dot)
+    })
+}
+
+function goToDetails(){
+    closeGallery()
+    nav('details')
+}
+
+// Wishlist
+function toggleWishlist(el){
+    if(el.textContent==='♡'){el.textContent='❤️';showToast('Ditambahkan ke Wishlist')}else{el.textContent='♡';showToast('Dihapus dari Wishlist')}
+}
+function addToWishlist(){
+    showToast('Ditambahkan ke Wishlist')
+}
+function openWA(){
+    const title="Umrah Ethiopian Airlines"
+    const price="Rp 26.9jt"
+    const text=encodeURIComponent(`Halo Alfian Tour, saya tertarik dengan paket ${title} seharga ${price}. Mohon info lebih lanjut.`)
+    window.open(`https://wa.me/628123456789?text=${text}`,'_blank')
+}
+
+// Agen filter
+function filterAgen(el){
+    document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('bg-[#7C3AED]','text-white'))
+    el.classList.add('bg-[#7C3AED]','text-white')
+}
+
+window.onload=function(){
+    initCarousel()
+    renderAkun()
+}
+</script>
+</body>
+</html>
