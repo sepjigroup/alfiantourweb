@@ -36,3 +36,7 @@ npm run build
 npm start
 ```
 Aplikasi production akan berjalan dan siap melayani permintaan.
+
+### 6. Deployment Server & Hosting (SmarterASP.NET / Docker / Railpack)
+- **Startup Entrypoint**: `server.js` (tersedia juga proxy di `app.js` dan `main.js`).
+- Script `npm start` otomatis menjalankan `node server.js` dengan dynamic port (`process.env.PORT || 3000`) pada interface `0.0.0.0` serta mendukung Windows Named Pipe IISNode.
