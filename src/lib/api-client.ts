@@ -4,7 +4,7 @@ import { AUTH_STORAGE_KEY } from './auth';
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 const ENV_API_URL = process.env.NEXT_PUBLIC_API_URL?.trim();
 const DEV_API_URL = 'http://localhost:5054';
-const PROD_API_URL = 'https://api-alfiantour.sepji.net';
+const PROD_API_URL = 'https://api.alfiantour.com';
 
 export const API_BASE_URL = ENV_API_URL || (IS_PRODUCTION ? PROD_API_URL : DEV_API_URL);
 const SUPPRESS_UNAUTHORIZED_REDIRECT_UNTIL_KEY = 'travelapp_suppress_unauth_redirect_until';

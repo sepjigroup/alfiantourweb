@@ -16,9 +16,10 @@ npm install
 ### 3. Konfigurasi Environment (.env)
 Pastikan file `.env.production` atau `.env.local` sudah ada:
 ```env
-NEXT_PUBLIC_API_URL=https://api-alfiantour.sepji.net
-NEXT_PUBLIC_SITE_URL=https://alfiantour.sepji.net
-NEXT_PUBLIC_AMP_SITE_URL=https://alfiantour.sepji.net
+NEXT_PUBLIC_API_URL=https://api.alfiantour.com
+NEXT_PUBLIC_SITE_URL=https://alfiantour.com
+NEXT_PUBLIC_AMP_SITE_URL=https://alfiantour.com
+
 NEXT_PUBLIC_SUPERADMIN_USERNAME=superadmin
 NEXT_PUBLIC_SUPERADMIN_WHATSAPP=6285722022786
 ```

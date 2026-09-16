@@ -16,7 +16,7 @@ function toAbsoluteUrl(raw?: string | null): string {
   const val = String(raw ?? '').trim();
   if (!val) return '';
   if (val.startsWith('http://') || val.startsWith('https://')) return val;
-  const api = process.env.NEXT_PUBLIC_API_URL || 'https://api-alfiantour.sepji.net';
+  const api = process.env.NEXT_PUBLIC_API_URL || 'https://api.alfiantour.com';
   return `${api}${val.startsWith('/') ? '' : '/'}${val}`;
 }
 

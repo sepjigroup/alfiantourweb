@@ -167,7 +167,7 @@ export function toAbsoluteUrl(raw?: string | null): string {
   const val = String(raw ?? '').trim();
   if (!val) return '';
   if (val.startsWith('http://') || val.startsWith('https://') || val.startsWith('data:')) return val;
-  const api = API_BASE_URL || 'https://api-alfiantour.sepji.net';
+  const api = API_BASE_URL || 'https://api.alfiantour.com';
   return `${api}${val.startsWith('/') ? '' : '/'}${val}`;
 }
 

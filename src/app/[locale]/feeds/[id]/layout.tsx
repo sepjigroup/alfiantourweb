@@ -16,7 +16,7 @@ type LayoutProps = {
   params: Promise<{ locale: string; id: string }>;
 };
 
-const PROD_API_URL = 'https://api-alfiantour.sepji.net';
+const PROD_API_URL = 'https://api.alfiantour.com';
 const DEV_API_URL = 'http://localhost:5054';
 const DEFAULT_SITE_URL = 'https://alfiantour.com';
 const DEFAULT_IMAGE = '/newlogo2.png';
