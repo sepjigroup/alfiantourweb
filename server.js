@@ -6,9 +6,12 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev, dir: __dirname });
 const handle = app.getRequestHandler();
 
-// Dynamic port handling for SmarterASP.NET, Railpack, Docker, or Local
-const rawPort = process.env.PORT || 3000;
+// Ambil dynamic port dari SmarterASP.NET (%HTTP_PLATFORM_PORT% atau PORT).
+// Tidak menggunakan port 3000.
+const rawPort = process.env.PORT || process.env.HTTP_PLATFORM_PORT || 8080;
 const isNamedPipe = typeof rawPort === 'string' && rawPort.startsWith('\\\\.\\pipe\\');
+
+console.log(`> Initializing server with target port/pipe: ${rawPort}`);
 
 app.prepare().then(() => {
   const server = createServer((req, res) => {
@@ -18,14 +21,12 @@ app.prepare().then(() => {
 
   const onListen = (err) => {
     if (err) throw err;
-    console.log(`> Ready on ${rawPort} (mode: ${dev ? 'dev' : 'production'})`);
+    console.log(`> Ready and listening on ${rawPort} (mode: ${dev ? 'dev' : 'production'})`);
   };
 
   if (isNamedPipe) {
-    // Windows IISNode named pipe
     server.listen(rawPort, onListen);
   } else {
-    // Dynamic TCP port (Docker / Railpack / Cloud hosting) on 0.0.0.0
     server.listen(Number(rawPort), '0.0.0.0', onListen);
   }
 }).catch((err) => {
