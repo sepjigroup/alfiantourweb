@@ -1,17 +1,37 @@
 const { createServer } = require('http');
 const { parse } = require('url');
+const fs = require('fs');
+const path = require('path');
 const next = require('next');
 
-const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dev, dir: __dirname });
-const handle = app.getRequestHandler();
+process.env.NODE_ENV = 'production';
 
-// Ambil dynamic port dari SmarterASP.NET (%HTTP_PLATFORM_PORT% atau PORT).
-// Tidak menggunakan port 3000.
+// Dynamic port from SmarterASP.NET (%HTTP_PLATFORM_PORT% or PORT)
 const rawPort = process.env.PORT || process.env.HTTP_PLATFORM_PORT || 8080;
 const isNamedPipe = typeof rawPort === 'string' && rawPort.startsWith('\\\\.\\pipe\\');
 
 console.log(`> Initializing server with target port/pipe: ${rawPort}`);
+
+// Load pre-compiled Next.js configuration from .next/required-server-files.json
+// This completely bypasses next.config.mjs and avoids triggering Turbopack / @parcel/watcher issues on Windows Server
+let nextConf = undefined;
+const reqFilesPath = path.join(__dirname, '.next', 'required-server-files.json');
+if (fs.existsSync(reqFilesPath)) {
+  try {
+    const data = JSON.parse(fs.readFileSync(reqFilesPath, 'utf8'));
+    nextConf = data.config;
+    console.log('> Loaded pre-compiled config from required-server-files.json');
+  } catch (err) {
+    console.warn('> Could not load required-server-files.json, falling back to default:', err.message);
+  }
+}
+
+const app = next({
+  dev: false,
+  dir: __dirname,
+  conf: nextConf
+});
+const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
   const server = createServer((req, res) => {
@@ -21,7 +41,7 @@ app.prepare().then(() => {
 
   const onListen = (err) => {
     if (err) throw err;
-    console.log(`> Ready and listening on ${rawPort} (mode: ${dev ? 'dev' : 'production'})`);
+    console.log(`> Ready and listening on ${rawPort} (mode: production)`);
   };
 
   if (isNamedPipe) {

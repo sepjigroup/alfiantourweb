@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
+    "@parcel/watcher": "^2.5.0",
+    "@parcel/watcher-win32-x64": "^2.5.0",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "framer-motion": "^12.38.0",
